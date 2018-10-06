@@ -16,10 +16,10 @@ extras_require = {
 
 setup(
     name='pyramid_auto_env',
-    version='0.0.1',
+    version='0.0.1-alpha',
     description='Pyramid Autoenv',
     classifiers=[
-        'Development Status :: 3',
+        'Development Status :: 3 - Alpha',
         'Programming Language :: Python',
         'License :: OSI Approved :: MIT License',
         'Topic :: Software Development :: Libraries :: Python Modules',
