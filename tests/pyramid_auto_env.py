@@ -8,16 +8,18 @@ class TestPyramidAutoEnv:
         assert without_env == payload_env
 
     def test_with_envs(self, monkeypatch, payload_env):
-        monkeypatch.setenv('ENV_MAIL_PASSWORD', 'foo')
-        monkeypatch.setenv('ENV_MAIL_USERNAME', 'bar')
+        monkeypatch.setenv('AES_MAIL_PASSWORD', 'foo')
+        monkeypatch.setenv('AES_MAIL_USERNAME', 'bar')
+        monkeypatch.setenv('AES_MAIL_HOST_PORT', '1234')
         with_env = main(**payload_env)
         payload_env['mail.password'] = 'foo'
         payload_env['mail.username'] = 'bar'
+        payload_env['mail.host-port'] = '1234'
         assert payload_env == with_env
 
-    def test_with_bool_envs(self, payload_env):
-        payload_env['mail.password'] = 'True'
-        payload_env['mail.username'] = 'FAlSe'
+    def test_with_bool_envs(self, monkeypatch, payload_env):
+        monkeypatch.setenv('AES_MAIL_PASSWORD', 'True')
+        monkeypatch.setenv('AES_MAIL_USERNAME', 'False')
         with_bool = main(**payload_env)
         payload_env['mail.password'] = True
         payload_env['mail.username'] = False

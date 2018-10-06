@@ -1,32 +1,40 @@
+import logging
 import os
+from functools import wraps
+
 from pyramid.settings import asbool
 
 
-def get_env_or_ini(prefix='env'):
+logger = logging.getLogger(__name__)
+
+
+def autoenv_settings(prefix='AES'):
     """
-    Example with env prefix and kwargs:
+    Example with aes prefix and kwargs:
         {
             "mail.password": "1234567",
             "mail.username": "marcelomoraes",
             "mail.host": "smtp.pyramid.com"
         }
-    environment: ENV_MAIL_PASSWORD=foobar
+    environment: AES_MAIL_PASSWORD=foobar
     :return  {
             "mail.password": "foobar",
             "mail.username": "marcelomoraes",
             "mail.host": "smtp.pyramid.com"
             }
 
-    :param prefix: environment prefix (default: env)
+    :param prefix: environment prefix (default: AES)
     """
     def func_wrapper(func):
+        @wraps(func)
         def wrapper(*args, **kwargs):
-            nonlocal prefix
             for k, v in kwargs.items():
-                if v.lower() in ['true', 'false']:
-                    kwargs[k] = asbool(os.environ.get(prefix.upper() + '_' + k.upper().replace('.', '_'), v))
-                else:
-                    kwargs[k] = os.environ.get(prefix.upper() + '_' + k.upper().replace('.', '_'), v)
+                transformed_key = "{}_{}".format(prefix.upper(), k.upper().replace('.', '_').replace('-', '_'))
+                envvar_value = os.environ.get(transformed_key)
+                if not envvar_value:
+                    continue
+                kwargs[k] = asbool(envvar_value) if envvar_value.lower() in ['true', 'false'] else envvar_value
+                logger.info('Found settings replacement for "{}" at "{}". Setting it up.'.format(k, transformed_key))
             return func(*args, **kwargs)
 
         return wrapper

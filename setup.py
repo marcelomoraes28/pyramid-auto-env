@@ -14,10 +14,15 @@ extras_require = {
     ]
 }
 
+with open('README.md') as f:
+    long_description = f.read()
+
 setup(
     name='pyramid_auto_env',
-    version='0.0.1-alpha',
+    version='0.0.2-alpha',
     description='Pyramid Autoenv',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Programming Language :: Python',

@@ -69,7 +69,7 @@ listen = localhost:6543
 ###
 
 [loggers]
-keys = root, myproject
+keys = root, pyramid_auto_env
 
 [handlers]
 keys = console
@@ -81,10 +81,11 @@ keys = generic
 level = INFO
 handlers = console
 
-[logger_myproject]
-level = DEBUG
-handlers =
-qualname = myproject
+[logger_pyramid_auto_env]
+level = INFO
+handlers = console
+qualname = pyramid_auto_env
+propagate = 0
 
 [handler_console]
 class = StreamHandler
@@ -99,14 +100,14 @@ format = %(asctime)s %(levelname)-5.5s [%(name)s:%(lineno)s][%(threadName)s] %(m
 
 **ENVIRONMENT**
 ```
-export ENV_MAIL_PASSWORD = S3kr3t
+export MYPROJ_MAIL_PASSWORD = S3kr3t
 ```
 **CODE**
 ```python
 from pyramid.config import Configurator
 from pyramid_auto_env import get_env_or_ini
 
-@get_env_or_ini()
+@autoenv_settings(prefix='myproj')
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
@@ -117,4 +118,15 @@ def main(global_config, **settings):
     config.scan()
     return config.make_wsgi_app()
 
+```
+
+## ENVVAR Format
+
+The environment variable lookup will search for `<prefix.upper()>_<settings_name.upper().replace(['.-', '_'])>`
+
+### Examples (prefix=MYPROJ):
+```
+host.url -> MYPROJ_HOST_URL
+mail-smtp -> MYPROJ_MAIL_SMTP
+my.project.super-secret -> MYPROJ_MY_PROJECT_SUPER_SECRET
 ```
