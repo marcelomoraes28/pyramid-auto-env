@@ -4,7 +4,7 @@
 [![Python Version](https://img.shields.io/badge/python-2.7%7C3.6-blue.svg)](https://img.shields.io/badge/python-2.7%7C3.6-blue.svg)
 
 # Pyramid auto env
-A pyramid library to help a overwrite ini configs with environments.
+A pyramid library to help overwrite ini configs with environment variables.
 
 ## Getting Started
 

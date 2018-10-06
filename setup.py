@@ -19,12 +19,12 @@ with open('README.md') as f:
 
 setup(
     name='pyramid_auto_env',
-    version='0.1.0',
+    version='0.1.1',
     description='Pyramid Autoenv',
     long_description=long_description,
     long_description_content_type='text/markdown',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Programming Language :: Python',
         'License :: OSI Approved :: MIT License',
         'Topic :: Software Development :: Libraries :: Python Modules',
