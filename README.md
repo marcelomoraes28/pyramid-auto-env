@@ -31,7 +31,7 @@ pytest
 
 Replacing the mail.password of the inifile with environment variable
 
-**INIFILE**
+**INI FILE**
 ```
 ###
 # app configuration
