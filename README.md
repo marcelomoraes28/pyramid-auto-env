@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/marcelomoraes28/pyramid-auto-env.svg?branch=master)](https://travis-ci.org/marcelomoraes28/pyramid-auto-env)
 [![Coverage Status](https://coveralls.io/repos/github/marcelomoraes28/pyramid-auto-env/badge.svg?branch=auto_env)](https://coveralls.io/github/marcelomoraes28/pyramid-auto-env?branch=auto_env)
-[![Pypi Version](https://img.shields.io/badge/pypi-0.0.1--alpha-yellow.svg)](https://img.shields.io/badge/pypi-0.0.1--alpha-yellow.svg)
+[![Pypi Version](https://img.shields.io/badge/pypi-0.1.1-yellow.svg)](https://img.shields.io/badge/pypi-0.0.1--alpha-yellow.svg)
 [![Python Version](https://img.shields.io/badge/python-2.7%7C3.6-blue.svg)](https://img.shields.io/badge/python-2.7%7C3.6-blue.svg)
 
 # Pyramid auto env
