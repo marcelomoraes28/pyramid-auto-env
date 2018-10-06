@@ -19,7 +19,7 @@ with open('README.md') as f:
 
 setup(
     name='pyramid_auto_env',
-    version='0.0.2-alpha',
+    version='0.1.0',
     description='Pyramid Autoenv',
     long_description=long_description,
     long_description_content_type='text/markdown',
