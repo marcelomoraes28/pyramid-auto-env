@@ -1,0 +1,18 @@
+language: python
+python:
+- '3.6'
+install:
+- pip install -e .[test,ci]
+script:
+- pytest --cov=pyramid-auto-env --cov-report annotate
+deploy:
+  provider: pypi
+  user: marcelomoraes28
+  on:
+    tags: true
+    branch: master
+    python: '3.6'
+  password:
+    secure: AQ/lKMDPzYzPvicAR20Qk+VDzupBGmOsKHmAnxUbus8ubMNzjFTzYfxRaI1zhwtrNFU9h+f47IXMyMRSeaMdrmXBJcryJhlh3dSoeL+bjm+DtqrO90sGxEYP5KNdqM5lcRN0CUWTXyOCNRZU6mmItTIXomZYq9o0XWf8wubwTe/WvSsXjWyVMEOyVvy/2vwq24iJDcvGVG7NBN7gYqNvoaP3P5TO8amx4wQqMwOfAfdhWyH2psvVEP06DhQdHVd2aR7Z898J7W2jBqOP0lzAC94kBZsynPFQpylhl4jTNvaYc7hMrm6fo9o17yoEVhVLSf6yQTu0XnTQ4U+EBWeYIXpxWuYS8k9eQkSwzQ3IxVY2eLzyv+Mr5YCQ9Y7cVChLmW4t5E0CyhjCDaRE2j4kJX1zaSarVL0Cvn4o/RgxoLx3kR+b36xGtU5gMNfWP8peCjRfwBGjTMTw27GkbbKQBJ0i4mP9hMbuj1/dBgCXvnjc76+v/hHeVhoXdOWHKnLACN7coU5JY9stzlus/sakHuY/aBX0YBNJOiR6sWM+BYEG+Yxa5z3wt/0X8nbj+eJ6V1PcR4KFB/+n6bYnsWzTGe89I4cKtJEUVm+kKFCauWo+EEOLCM0ob63mFCEcwFHmY2t3ivEOCTANSdUZCRC91IpBbtCkuoHhKy1aGRYr2lg=
+after_success:
+- coveralls
