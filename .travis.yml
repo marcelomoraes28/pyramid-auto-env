@@ -6,6 +6,7 @@ install:
 script:
 - pytest --cov=pyramid_auto_env --cov-report annotate
 deploy:
+  skip_cleanup: true
   provider: pypi
   user: marcelomoraes28
   on:
