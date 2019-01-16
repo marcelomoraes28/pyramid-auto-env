@@ -1,4 +1,5 @@
 from tests.conftest import main, main_set_prefix
+from pyramid_auto_env import replace
 
 
 class TestPyramidAutoEnv:
@@ -30,3 +31,15 @@ class TestPyramidAutoEnv:
         with_pyramid_prefix = main_set_prefix(**payload_env)
         payload_env['mail.username'] = 'bar'
         assert payload_env == with_pyramid_prefix
+
+
+class TestReplace:
+    def test_replace_with_prefix(self, monkeypatch, payload_env):
+        monkeypatch.setenv('PYRAMID_MAIL_USERNAME', 'bar')
+        monkeypatch.setenv('PYRAMID_MAIL_HOST', 'foo')
+        monkeypatch.setenv('PYRAMID_MAIL_PASSWORD', 'foo-bar')
+        with_pyramid_prefix = replace('PYRAMID', **payload_env)
+        payload_env['mail.username'] = 'bar'
+        assert 'bar' == with_pyramid_prefix['mail.username']
+        assert 'foo' == with_pyramid_prefix['mail.host']
+        assert 'foo-bar' == with_pyramid_prefix['mail.password']
