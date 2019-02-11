@@ -105,7 +105,7 @@ export MYPROJ_MAIL_PASSWORD = S3kr3t
 **CODE**
 ```python
 from pyramid.config import Configurator
-from pyramid_auto_env import get_env_or_ini
+from pyramid_auto_env import autoenv_settings
 
 @autoenv_settings(prefix='myproj')
 def main(global_config, **settings):
